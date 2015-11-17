@@ -3,7 +3,7 @@
 package main
 
 import (
-//	"sielickin/Qualgo"
+//	"github.com/sielickin/Qualgo"
 //	"database/sql"
 //	"fmt"
 //	"log"
@@ -14,15 +14,11 @@ func init () {
 
 }
 
-// TODO:
-//	PUT ALL SQL CALLS HERE
  const (
-	//edit these out
 	schema_name = "research"
 	table_name = "tree"
-	//keep these in
-	CREATE_SCHEMA_BASE = "CREATE SCHEMA ?;"
-	CREATE_TABLE_BASE = `
+	createSchema_base = "CREATE SCHEMA ?;"
+	createTableBase = `
 CREATE TABLE ?.? (
 RESPONSEID    TEXT,
 EMAIL    TEXT,
@@ -36,12 +32,12 @@ COUPON_CODE   TEXT,
 SIBLINGIDS    TEXT[5]
 );
 `
-	SELECT_IDS_OF_S_BASE = "SELECT RESPONSEID FROM ?.? WHERE STATE = 'S';"
-	KILL_OLD_S_BASE = "UPDATE ?.? SET STATE = 'D' WHERE STATE ='S' AND TIME_SENT < now() - interval '7 days';" 
-	SELECT_COUPON_CODES_OF_DEAD_BASE = "SELECT COUPON_CODEFROM ?.? WHERE STATE = 'DEAD' AND COUPON_CODE != 'NONE';"
-	DELETE_COUPONS_FROM_D_BASE = "UPDATE ?.? SET COUPON_CODE = 'NONE' WHERE STATE = 'DEAD';"
-	GET_OLD_Q_BASE = "SELECT RESPONSEID FROM ?.? WHERE STATE = 'Q' AND TIME_SELECTED < now() - interval '1 day';"
-	UPDATE_OLD_Q_BASE = "UPDATE ?.? SET STATE = 'S' WHERE STATE = 'Q' and TIME_SELECTED < now() - interval '1 day';"
+	selectIdsOfSBase = "SELECT RESPONSEID FROM ?.? WHERE STATE = 'S';"
+	killOldSBase = "UPDATE ?.? SET STATE = 'D' WHERE STATE ='S' AND TIME_SENT < now() - interval '7 days';" 
+	selectCouponCodesOfDeadBase = "SELECT COUPON_CODEFROM ?.? WHERE STATE = 'DEAD' AND COUPON_CODE != 'NONE';"
+	deleteCouponsFromDBase = "UPDATE ?.? SET COUPON_CODE = 'NONE' WHERE STATE = 'DEAD';"
+	getOldQBase = "SELECT RESPONSEID FROM ?.? WHERE STATE = 'Q' AND TIME_SELECTED < now() - interval '1 day';"
+	updateOldQBase = "UPDATE ?.? SET STATE = 'S' WHERE STATE = 'Q' and TIME_SELECTED < now() - interval '1 day';"
  )
 
 func main () {
